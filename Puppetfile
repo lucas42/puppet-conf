@@ -3,10 +3,7 @@
 
 forge "http://forge.puppetlabs.com"
 
-# use dependencies defined in Modulefile
-modulefile
-
-# mod 'puppetlabs/stdlib'
+mod 'puppetlabs/firewall'
 
 # mod 'ntp',
 #   :git => 'git://github.com/puppetlabs/puppetlabs-ntp.git'
