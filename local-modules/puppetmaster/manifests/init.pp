@@ -1,8 +1,10 @@
 class puppetmaster {
-	package { "puppetmaster":
-		ensure => latest
-	}
-	package { "librarian-puppet":
+	package { ["puppetmaster","librarian-puppet"]:
 		ensure => latest,
+	}
+	service { "puppetmaster":
+		enable => true,
+		ensure => "running",
+		require => Package["puppetmaster"],
 	}
 }
