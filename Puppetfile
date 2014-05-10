@@ -3,7 +3,7 @@
 
 forge "http://forge.puppetlabs.com"
 
-mod 'puppetlabs/firewall'
+#mod 'puppetlabs/firewall'
 
 # mod 'ntp',
 #   :git => 'git://github.com/puppetlabs/puppetlabs-ntp.git'

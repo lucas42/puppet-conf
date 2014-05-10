@@ -1,8 +1,2 @@
-FORGE
-  remote: http://forge.puppetlabs.com
-  specs:
-    puppetlabs/firewall (1.0.2)
-
 DEPENDENCIES
-  puppetlabs/firewall (>= 0)
 
