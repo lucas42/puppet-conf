@@ -1,8 +1,10 @@
 node sssesperanto {
-	include puppetmaster
 	include tools
+	include login
+	include puppetmaster
 }
 node hive {
 	include tools
+	include login
 	include hostmachine
 }
