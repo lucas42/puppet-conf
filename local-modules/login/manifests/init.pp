@@ -47,6 +47,13 @@ class login {
 		source => "puppet:///modules/login/bash_profile",
 		require => File["${home}/lucas"],
 	}
+	file { "${home}/lucas/.gitconfig":
+		owner => lucas,
+		group => lucas,
+		mode => 750,
+		source => "puppet:///modules/login/gitconfig",
+		require => File["${home}/lucas"],
+	}
 	file { "${home}/lucas/.ssh":
 		ensure => "directory",
 		owner => lucas,
