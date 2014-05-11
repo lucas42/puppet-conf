@@ -1,10 +1,5 @@
 class tools {
-	package {
-		"curl":
-			ensure => latest;
-		"dnsutils":
-			ensure => latest;
-		"git":
+	package { ["curl","dnsutils","git","screen","nano"]:
 			ensure => latest;
 	}
 }
