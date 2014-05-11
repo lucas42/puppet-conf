@@ -8,3 +8,8 @@ node hive {
 	include login
 	include hostmachine
 }
+node colonial1 {
+	Package { provider => "macports" }
+	include tools
+	include login
+}
