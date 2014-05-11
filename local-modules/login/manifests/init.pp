@@ -21,11 +21,13 @@ class login {
 		source => "puppet:///modules/login/sudoers",
 		require => [Package["sudo"],User["lucas"]],
 	}
+
+	$prompt_colour = hiera('prompt_colour')
 	file { "${home}/lucas/.bashrc":
 		owner => lucas,
 		group => lucas,
 		mode => 750,
-		source => "puppet:///modules/login/bashrc",
+		content => template("login/bashrc.erb"),
 		require => File["${home}/lucas"],
 	}
 	file { "/etc/motd":
@@ -38,7 +40,7 @@ class login {
 		owner => root,
 		group => $rootgrp,
 		mode => 750,
-		source => "puppet:///modules/login/bashrc",
+		content => template("login/bashrc.erb"),
 	}
 	file { "${home}/lucas/.bash_profile":
 		owner => lucas,

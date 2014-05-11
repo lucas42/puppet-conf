@@ -36,30 +36,7 @@ GREEN="\[\033[0;32m\]" #default
 LIGHT_GREEN="\[\033[1;32m\]"
 LIGHT_PURPLE="\[\033[1;35m\]"  #interceptor
 
-if [ "`hostname -s`"  = "interceptor" ]; then
-	PSCOLOR=$LIGHT_PURPLE
-elif [ "`hostname -s`"  = "prometheus" ]; then
-	PSCOLOR=$BLUE
-elif [ "`hostname -s`"  = "x303" ]|| [ "`hostname -s`" = "f303" ]; then
-        PSCOLOR=$BLUE
-#elif [ "`hostname -d`"  = "tardis.ed.ac.uk" ]; then
-#	PSCOLOR=$LIGHT_BLUE
-
-elif [ "`hostname -s`"  = "ds5023" ]; then
-	PSCOLOR=$BROWN
-elif [ "`hostname -s`"  = "colonial1" ]; then
-	PSCOLOR=$RED
-elif [ "`hostname -s`"  = "weee" ]; then
-	PSCOLOR=$WHITE
-	alias monitor='xrandr --output VGA --same-as LVDS --auto'
-	xhost local:weee > /dev/null
-	alias dialann='su dialann'
-
-elif [ "`hostname -s`"  = "satellite5" ]; then
-	PSCOLOR=$YELLOW
-else 
-	PSCOLOR=$GREEN
-fi
+PSCOLOR=$<%= @prompt_colour.upcase %>
 if [ "`whoami`" = "root" ]; then
 	ROOT="${YELLOW}*"
 elif [ "`whoami`" = "dialann" ]; then
