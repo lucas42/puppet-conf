@@ -1,2 +1,31 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    puppetlabs/apt (1.4.2)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/concat (1.1.0-rc1)
+      puppetlabs/stdlib (>= 3.0.0)
+    puppetlabs/firewall (1.0.2)
+    puppetlabs/inifile (1.0.3)
+    puppetlabs/puppetdb (3.0.1)
+      puppetlabs/firewall (>= 0.0.4)
+      puppetlabs/inifile (~> 1.0)
+      puppetlabs/postgresql (< 4.0.0, >= 3.1.0)
+      puppetlabs/stdlib (>= 2.2.0)
+    puppetlabs/stdlib (4.2.1)
+
+GIT
+  remote: https://github.com/lucas42/puppetlabs-postgresql.git
+  ref: patch-1
+  sha: 375308a12db763433dd7db42d066fb37a8f34ef2
+  specs:
+    puppetlabs/postgresql (3.3.1)
+      puppetlabs/apt (< 2.0.0, >= 1.1.0)
+      puppetlabs/concat (< 2.0.0, >= 1.0.0)
+      puppetlabs/firewall (>= 0.0.4)
+      puppetlabs/stdlib (< 5.0.0, >= 3.2.0)
+
 DEPENDENCIES
+  puppetlabs/postgresql (>= 0)
+  puppetlabs/puppetdb (>= 0)
 

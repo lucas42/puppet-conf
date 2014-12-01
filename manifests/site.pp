@@ -13,3 +13,11 @@ node colonial1 {
 	include tools
 	include login
 }
+node beliskner {
+	include tools
+	include login
+
+	class { 'puppetdb::database::postgresql':
+		listen_addresses => "*"
+	}
+}
