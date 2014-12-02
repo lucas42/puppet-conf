@@ -1,5 +1,5 @@
 class tools {
-	package { ["curl","screen","nano","puppet"]:
+	package { ["curl","screen","nano","puppet","vim"]:
 			ensure => latest
 	}
 	if $operatingsystem == 'Darwin' {
