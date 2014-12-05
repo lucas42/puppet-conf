@@ -20,4 +20,13 @@ node beliskner {
 	class { 'puppetdb::database::postgresql':
 		listen_addresses => "*"
 	}
+	include zabbix::database::remotepostgresql
+}
+node thunderbird5 {
+	include tools
+	include login
+	class { 'zabbix::server':
+		zabbix_url => 'zabbix.l42.eu',
+		dbhost     => '10.0.0.2',
+	}
 }
