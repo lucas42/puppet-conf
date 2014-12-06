@@ -7,7 +7,7 @@ class tools {
 			ensure => latest
 		}
 	} else {
-		package { ["net-tools","dnsutils","git"]:
+		package { ["net-tools","dnsutils","git","telnet"]:
 			ensure => latest
 		}
 	}
