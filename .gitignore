@@ -2,3 +2,4 @@
 modules/
 .librarian/
 ._*
+hieradata/*.private.yaml

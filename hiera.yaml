@@ -3,6 +3,7 @@
 :yaml:
   :datadir: /etc/puppet/hieradata
 :hierarchy:
+  - "%{::clientcert}.private"
   - "%{::clientcert}"
   - default
 :logger: puppet
