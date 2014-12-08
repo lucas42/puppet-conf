@@ -22,4 +22,7 @@ class puppetmaster {
 		# Hardcode for now.  TODO: use puppetdb to work it out (how meta!)
 		database_host => '10.0.0.2',
 	}
+	package { 'ruby-puppetdb':
+		provider => 'gem',
+	}
 }

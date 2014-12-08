@@ -1,6 +1,7 @@
 node sssesperanto {
 	include tools
 	include login
+	include monitoring
 	include puppetmaster
 }
 node hive {
@@ -25,8 +26,22 @@ node beliskner {
 node thunderbird5 {
 	include tools
 	include login
+	$dbhosts = query_nodes('Class[\'zabbix::database::remotepostgresql\']', 'ipaddress')
 	class { 'zabbix::server':
-		zabbix_url => 'zabbix.l42.eu',
-		dbhost     => '10.0.0.2',
+		dbhost           => $dbhosts[0],
+		manage_resources => true,
 	}
+
+	# HACK: On wheezy, puppet looks for gems in a different place to where
+	# they're installed.
+	# This adds zabbixapi to ruby's load path (note: 1st puppet run will
+	# still fail :( )
+	file { '/etc/profile.d/rubylib.sh':
+		content => 'export RUBYLIB=\'/var/lib/gems/1.9.1/gems/zabbixapi-2.4.0/lib\''
+	}
+}
+node webstar {
+        include tools
+        include login
+	include monitoring
 }
