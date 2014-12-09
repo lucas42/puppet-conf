@@ -24,6 +24,8 @@ FORGE
       puppetlabs/postgresql (< 5.0.0, >= 4.0.0)
       puppetlabs/stdlib (< 5.0.0, >= 4.2.2)
     puppetlabs/stdlib (4.4.0)
+    saz/timezone (3.1.1)
+      puppetlabs/stdlib (>= 2.3.0)
 
 GIT
   remote: git@github.com:lucas42/puppet-zabbix.git
@@ -41,5 +43,6 @@ DEPENDENCIES
   puppetlabs/ntp (>= 0)
   puppetlabs/postgresql (>= 0)
   puppetlabs/puppetdb (>= 0)
+  saz/timezone (>= 0)
   wdijkerman/zabbix (>= 0)
 

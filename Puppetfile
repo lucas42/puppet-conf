@@ -6,6 +6,7 @@ forge "http://forge.puppetlabs.com"
 mod 'puppetlabs/puppetdb'
 mod 'puppetlabs/postgresql'
 mod 'puppetlabs/ntp'
+mod 'saz/timezone'
 mod 'wdijkerman/zabbix',
    :git => 'git@github.com:lucas42/puppet-zabbix.git',
    :ref => 'test'
