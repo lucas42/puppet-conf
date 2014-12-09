@@ -5,4 +5,5 @@ class hostmachine {
 		'xen-tools':
 			ensure => latest;
 	}
+	include hostfirewall
 }
