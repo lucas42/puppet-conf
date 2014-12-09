@@ -25,6 +25,7 @@ node thunderbird5 {
 	class { 'zabbix::server':
 		dbhost	         => $dbhosts[0],
 		manage_resources => true,
+		zabbix_timezone  => 'Europe/London',
 	}
 
 	# HACK: On wheezy, puppet looks for gems in a different place to where
