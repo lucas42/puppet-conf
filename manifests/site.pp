@@ -21,20 +21,7 @@ node beliskner {
 }
 node thunderbird5 {
 	include standardnode
-	$dbhosts = query_nodes('Class[\'zabbix::database::remotepostgresql\']', 'ipaddress')
-	class { 'zabbix::server':
-		dbhost	         => $dbhosts[0],
-		manage_resources => true,
-		zabbix_timezone  => 'Europe/London',
-	}
-
-	# HACK: On wheezy, puppet looks for gems in a different place to where
-	# they're installed.
-	# This adds zabbixapi to ruby's load path (note: 1st puppet run will
-	# still fail :( )
-	file { '/etc/profile.d/rubylib.sh':
-		content => 'export RUBYLIB=\'/var/lib/gems/1.9.1/gems/zabbixapi-2.4.0/lib\''
-	}
+	include zabbixserver
 }
 node webstar {
 	include standardnode

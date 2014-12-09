@@ -26,13 +26,7 @@ FORGE
     puppetlabs/stdlib (4.4.0)
     saz/timezone (3.1.1)
       puppetlabs/stdlib (>= 2.3.0)
-
-GIT
-  remote: git@github.com:lucas42/puppet-zabbix.git
-  ref: test
-  sha: 3e8c98e2ed0bc50f545bcc26c7c91f6538410b44
-  specs:
-    wdijkerman/zabbix (0.5.1)
+    wdijkerman/zabbix (0.6.1)
       puppetlabs/apache (>= 1.0.0)
       puppetlabs/firewall (>= 1.0.0)
       puppetlabs/mysql (>= 2.0.0)
