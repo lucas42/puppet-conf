@@ -5,7 +5,7 @@ class monitoring (
 	if ($internal) {
 		$key = 'ipaddress'
 		$agent_use_ip = true
-
+		$listenip = $::ipaddress
 	# For external nodes, use DNS
 	} else {
 		$key = 'fqdn'
@@ -16,5 +16,6 @@ class monitoring (
 		server           => $zabbixservers[0],
 		manage_resources => true,
 		agent_use_ip     => $agent_use_ip,
+		listenip         => $listenip,
 	}
 }
