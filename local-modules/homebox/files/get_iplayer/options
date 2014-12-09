@@ -1,0 +1,6 @@
+output /medlib/iplayer
+flush 0
+type all
+subdir 1
+fileprefix <name>-<pid>-<episode>
+nopurge 1

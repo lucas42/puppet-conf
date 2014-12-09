@@ -42,7 +42,7 @@ node webstar {
 }
 node interceptor {
 	include standardnode
-	#include interceptor
+	include homebox
 }
 node default {
 	include standardnode

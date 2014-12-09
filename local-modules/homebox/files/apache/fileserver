@@ -1,0 +1,14 @@
+<VirtualHost *:8010>
+	ServerName private.l42.eu
+	ServerAlias private2.l42.eu
+	DocumentRoot /web/lucos/fileserver/
+	RedirectMatch ^/$ http://l42.eu/
+	<Directory /web/lucos/fileserver/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+		DirectoryIndex index.php index.html
+		Header set Access-Control-Allow-Origin "*"
+	</Directory>
+</VirtualHost>
