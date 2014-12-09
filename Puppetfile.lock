@@ -12,6 +12,8 @@ FORGE
     puppetlabs/inifile (1.2.0)
     puppetlabs/mysql (3.0.0)
       puppetlabs/stdlib (>= 3.2.0)
+    puppetlabs/ntp (3.3.0)
+      puppetlabs/stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs/postgresql (4.1.0)
       puppetlabs/apt (< 2.0.0, >= 1.1.0)
       puppetlabs/concat (< 2.0.0, >= 1.1.0)
@@ -36,6 +38,7 @@ GIT
       puppetlabs/stdlib (>= 4.0.0)
 
 DEPENDENCIES
+  puppetlabs/ntp (>= 0)
   puppetlabs/postgresql (>= 0)
   puppetlabs/puppetdb (>= 0)
   wdijkerman/zabbix (>= 0)
