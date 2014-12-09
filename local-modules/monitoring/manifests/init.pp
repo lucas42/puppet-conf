@@ -3,6 +3,5 @@ class monitoring {
 	class { 'zabbix::agent':
 		server           => $zabbixservers[0],
 		manage_resources => true,
-		logfile          => '/var/log/zabbix-agent/zabbix_agentd.log',
 	}
 }

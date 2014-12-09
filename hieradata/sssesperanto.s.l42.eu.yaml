@@ -1,2 +1,4 @@
 ---
 prompt_colour: light_purple
+# HACK: not sure why this server has its zabbix log in a different place to the other ones :S
+zabbix::agent::logfile: /var/log/zabbix-agent/zabbix_agentd.log
