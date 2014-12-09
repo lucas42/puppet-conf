@@ -4,4 +4,5 @@ class standardnode {
 	include monitoring
 	include standardnode::time
 	include standardnode::dnsupdates
+	include standardnode::puppetagentconfig
 }
