@@ -35,7 +35,8 @@ node thunderbird5 {
 	}
 }
 node webstar {
-        include standardnode
+	include standardnode
+	include varnish
 }
 node default {
 	include standardnode
