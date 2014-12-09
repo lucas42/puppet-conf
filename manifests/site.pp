@@ -3,7 +3,8 @@ node sssesperanto {
 	include puppetmaster
 }
 node hive {
-        include standardnode
+	include standardnode
+	include hostmachine
 }
 node colonial1 {
 	Package { provider => "macports" }
@@ -11,7 +12,7 @@ node colonial1 {
 	include login
 }
 node beliskner {
-        include standardnode
+	include standardnode
 
 	class { 'puppetdb::database::postgresql':
 		listen_addresses => "*"
@@ -19,10 +20,10 @@ node beliskner {
 	include zabbix::database::remotepostgresql
 }
 node thunderbird5 {
-        include standardnode
+	include standardnode
 	$dbhosts = query_nodes('Class[\'zabbix::database::remotepostgresql\']', 'ipaddress')
 	class { 'zabbix::server':
-		dbhost           => $dbhosts[0],
+		dbhost	         => $dbhosts[0],
 		manage_resources => true,
 	}
 
