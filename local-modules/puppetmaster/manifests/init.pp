@@ -10,8 +10,6 @@ class puppetmaster {
 	file { "/etc/puppet":
 		ensure => "directory",
 		owner => lucas,
-		group => root,
-		mode => 644,
 		require => [User["lucas"], Package["puppetmaster"]],
 		recurse => true,
 	}
