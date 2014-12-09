@@ -40,6 +40,10 @@ node webstar {
 	include standardnode
 	include varnish
 }
+node interceptor {
+	include standardnode
+	#include interceptor
+}
 node default {
 	include standardnode
 }
