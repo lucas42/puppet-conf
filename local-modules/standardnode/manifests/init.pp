@@ -3,4 +3,5 @@ class standardnode {
 	include login
 	include monitoring
 	include standardnode::time
+	include standardnode::dnsupdates
 }
