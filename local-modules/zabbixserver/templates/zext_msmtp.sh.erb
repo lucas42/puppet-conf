@@ -63,7 +63,7 @@ MSMTP_ACCOUNT='zabbix'
 #  $2 : Subject
 #  $3 : Message
 recipient=$1
-subject=$2
+subject=`echo "$2" | sed 's/^[A-Z]*: //'`
 message=$3
  
 date=`date --rfc-2822`
@@ -74,5 +74,6 @@ From: <$FROM>
 To: <$recipient>
 Subject: $subject
 Date: $date
+
 $message
 EOF
