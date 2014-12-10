@@ -1,0 +1,78 @@
+#! /bin/sh
+################################################################################
+# Zabbix extensions (C) 2011-* Joseph Bueno <zabbixextensions@aperto.fr>
+# Published under GNU General Public License version 2 or later.
+# See LICENSE.txt
+#-------------------------------------------------------------------------------
+# Usage:
+#   zext_msmtp.sh <recipient> <subject> <message>
+#
+# Description:
+#  Uses msmtp to send an email. 
+#  This script inserts headers:
+#    From:    see FROM variable
+#    To:      using <recipient>
+#    Date:    dynamically computed
+#    Subject: using <subject>
+#
+#  <message> may start with headers, msmtp will seperate them from message body
+#  and put them in message headers section.
+#
+# It uses an msmtp account as defined in MSMTP_ACCOUNT
+# Account is defined in /etc/msmtprc
+#  
+# simple account configuration
+# ----------------------------
+# account zabbix
+# host smtp.example.org
+# from zabbix@example.org
+#
+# advanced account setup (authentication + TLS on Gmail)
+# ------------------------------------------------------
+# account zabbix
+# tls on
+# tls_starttls on
+# tls_trust_file /etc/ssl/certs/ca-certificates.crt
+# host smtp.gmail.com
+# port 587
+# auth on
+# from zabbixaccount@gmail.com
+# user zabbixaccount@gmail.com
+# password ***********
+# 
+# (from, user and password should be replaced with real values).
+#
+# Dependencies
+#  It needs msmtp utility
+#  On Debian and Ubuntu:
+#    apt-get install msmtp
+#
+################################################################################
+DEBUG=0
+if [ $DEBUG -gt 0 ]
+then
+	exec 2>>/tmp/zext_msmtp.log
+	set -x
+fi
+# Default parameters
+FROM='zabbix@domain.com'
+MSMTP_ACCOUNT='zabbix'
+ 
+# Parameters (as passed by Zabbix):
+#  $1 : Recipient 
+#  $2 : Subject
+#  $3 : Message
+recipient=$1
+subject=$2
+message=$3
+ 
+date=`date --rfc-2822`
+ 
+# Replace linefeeds (LF) with CRLF and send message
+sed 's/$/\r/' <<EOF | msmtp --account $MSMTP_ACCOUNT $recipient
+From: <$FROM>
+To: <$recipient>
+Subject: $subject
+Date: $date
+$message
+EOF

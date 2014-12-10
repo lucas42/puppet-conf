@@ -12,7 +12,9 @@ class zabbixserver {
                 dbhost           => $dbhosts[0],
                 manage_resources => true,
                 zabbix_timezone  => 'Europe/London',
-        }
+		alertscriptspath => '/etc/zabbix/alert.d',
+        } ->
+	class { 'zabbixserver::mail': }
 
         # HACK: On wheezy, puppet looks for gems in a different place to where
         # they're installed.
