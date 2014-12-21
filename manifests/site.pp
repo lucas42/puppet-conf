@@ -31,6 +31,10 @@ node interceptor {
 	include standardnode
 	include homebox
 }
+node olympiccarrier {
+	include standardnode
+	include django
+}
 node default {
 	include standardnode
 }
