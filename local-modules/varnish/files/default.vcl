@@ -8,7 +8,7 @@ backend puppetdb {
 }
 backend contacts {
 	.host = "10.0.0.6";
-	.port = "8080";
+	.port = "80";
 }
 sub vcl_recv {
 	if (req.http.host == "zabbix.l42.eu") {

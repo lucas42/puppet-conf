@@ -1,4 +1,8 @@
-class django {
+class django (
+	$domain,
+	$directory,
+	$application,
+){
 	class { 'apt::backports':
 		pin_priority => 500,
 	} ->
@@ -27,4 +31,14 @@ class django {
                 ensure => present,
                 gid => 2001,
         }
+	class { 'apache':  }
+	class { 'apache::mod::wsgi':
+		wsgi_python_path   => "/web/lucos/${directory}",
+	}
+	apache::vhost { $domain:
+		port    => 80,
+                docroot => "/web/lucos/${directory}/${application}",
+                wsgi_script_aliases         => { '/' => "/web/lucos/${directory}/${application}/wsgi.py" }
+        }
+
 }

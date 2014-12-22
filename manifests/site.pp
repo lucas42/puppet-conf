@@ -33,7 +33,11 @@ node interceptor {
 }
 node olympiccarrier {
 	include standardnode
-	include django
+	class {'django':
+		domain      => 'contacts.l42.eu',
+		directory   => 'lucos_contacts',
+		application => 'agents',
+	}
 }
 node default {
 	include standardnode
