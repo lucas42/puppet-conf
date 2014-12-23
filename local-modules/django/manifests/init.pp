@@ -38,7 +38,11 @@ class django (
 	apache::vhost { $domain:
 		port    => 80,
                 docroot => "/web/lucos/${directory}/${application}",
-                wsgi_script_aliases         => { '/' => "/web/lucos/${directory}/${application}/wsgi.py" }
+                wsgi_script_aliases         => { '/' => "/web/lucos/${directory}/${application}/wsgi.py" },
+		aliases => {
+			alias => '/media/admin/',
+			path  => '/usr/share/python-django-common/django/contrib/admin/static/admin/',
+		}
         }
 
 }
