@@ -43,7 +43,7 @@ class django (
                 wsgi_script_aliases         => { '/' => "/web/lucos/${directory}/${application}/wsgi.py" },
 		aliases => [{
 			alias => '/media/admin/',
-			path  => '/usr/share/python-django-common/django/contrib/admin/static/admin/',
+			path  => '/usr/share/pyshared/django/contrib/admin/static/admin/',
 		}, {
 			alias => '/favicon.ico',
 			path  => "/web/lucos/${directory}/templates/resources/logo.png",
