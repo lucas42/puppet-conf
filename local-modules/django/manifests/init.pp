@@ -41,10 +41,16 @@ class django (
 		docroot_owner => 'lucas',
 		docroot_group => 'lucas',
                 wsgi_script_aliases         => { '/' => "/web/lucos/${directory}/${application}/wsgi.py" },
-		aliases => {
+		aliases => [{
 			alias => '/media/admin/',
 			path  => '/usr/share/python-django-common/django/contrib/admin/static/admin/',
-		}
+		}, {
+			alias => '/favicon.ico',
+			path  => "/web/lucos/${directory}/templates/resources/logo.png",
+		}, {
+			alias => '/icon',
+			path  => "/web/lucos/${directory}/templates/resources/logo.png",
+		}]
         }
 
 }
