@@ -96,4 +96,7 @@ class login {
 		ensure => absent,
 		require => [Group["lucas"], User["pi"]],
 	}
+	file { '/etc/ssh/ssh_config':
+		source => "puppet:///modules/login/ssh_config",
+	}
 }
