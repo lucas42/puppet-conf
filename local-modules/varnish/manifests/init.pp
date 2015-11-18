@@ -5,6 +5,7 @@ class varnish {
 	service {'varnish':
 		ensure => 'running',
 		require => Package['varnish'],
+		hasrestart => true,
 	}
 	file {'/etc/varnish/default.vcl':
 		ensure => present,
