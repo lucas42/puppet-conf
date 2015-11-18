@@ -17,8 +17,9 @@ COMMIT
 -A PREROUTING -p tcp -m tcp --dport 8140 -j DNAT --to-destination 10.0.0.1:8140
 -A PREROUTING -p tcp -m tcp --dport 2201 -j DNAT --to-destination 10.0.0.1:22
 
-# Send HTTP traffic to varnish server
+# Send HTTP and HTTPS traffic to varnish server
 -A PREROUTING -p tcp -m tcp -d 37.59.63.122 --dport 80 -j DNAT --to-destination 10.0.0.4:80
+-A PREROUTING -p tcp -m tcp -d 37.59.63.122 --dport 443 -j DNAT --to-destination 10.0.0.4:443
 
 # Send postgresql traffic to DB server
 -A PREROUTING -p tcp -m tcp -d 37.59.63.122 --dport 5432 -j DNAT --to-destination 10.0.0.2:5432
