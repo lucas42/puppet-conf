@@ -39,6 +39,10 @@ node olympiccarrier {
 		application => 'agents',
 	}
 }
+node daedalus {
+	include standardnode
+	include docker
+}
 node default {
 	include standardnode
 }
