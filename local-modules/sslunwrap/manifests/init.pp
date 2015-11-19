@@ -18,4 +18,5 @@ class sslunwrap {
 	}
 
 	sslunwrap::site { 'tfluke.uk': }
+	sslunwrap::site { 'app.tfluke.uk': }
 }

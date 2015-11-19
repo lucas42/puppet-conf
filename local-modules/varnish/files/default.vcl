@@ -14,6 +14,10 @@ backend tfluke {
 	.host = "lucas42.github.io";
 	.port = "80";
 }
+backend tflukeapp {
+	.host = "tfluke.herokuapp.com";
+	.port = "80";
+}
 sub vcl_recv {
 	if (req.http.host == "zabbix.l42.eu") {
 		set req.backend = zabbix;
@@ -23,6 +27,8 @@ sub vcl_recv {
 		set req.backend = contacts;
 	} elseif (req.http.host == "tfluke.uk") {
 		set req.backend = tfluke;
+	} elseif (req.http.host == "app.tfluke.uk") {
+		set req.backend = tflukeapp;
 	} else {
 		error 499 "Host Not Found";
 	}
