@@ -27,6 +27,9 @@ sub vcl_recv {
 		set req.backend = contacts;
 	} elseif (req.http.host == "tfluke.uk") {
 		set req.backend = tfluke;
+	} elseif (req.http.host == "www.tfluke.uk") {
+		set req.http.host = "tfluke.uk";
+                set req.backend = tfluke;
 	} elseif (req.http.host == "app.tfluke.uk") {
 		set req.backend = tflukeapp;
 	} else {
