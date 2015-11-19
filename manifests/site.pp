@@ -26,6 +26,7 @@ node thunderbird5 {
 node webstar {
 	include standardnode
 	include varnish
+	include sslunwrap
 }
 node interceptor {
 	include standardnode

@@ -1,0 +1,26 @@
+server {
+  listen 443 ssl;
+
+  server_name <%= @domain -%>;
+
+  ssl_certificate      /etc/letsencrypt/live/<%= @domain -%>/fullchain.pem;
+  ssl_certificate_key  /etc/letsencrypt/live/<%= @domain -%>/privkey.pem;
+  #ssl_trusted_certificate /etc/letsencrypt/live/<%= @domain -%>/fullchain.pem;
+
+
+  location / {
+    # Pass the request on to Varnish.
+    proxy_pass  http://127.0.0.1;
+
+    # Pass a bunch of headers to the downstream server, so they'll know what's going on.
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    # Most web apps can be configured to read this header and understand that the current session is actually HTTPS.
+    proxy_set_header X-Forwarded-Proto https;
+
+    # We expect the downsteam servers to redirect to the right hostname, so don't do any rewrites here.
+    proxy_redirect     off;
+  }
+}
