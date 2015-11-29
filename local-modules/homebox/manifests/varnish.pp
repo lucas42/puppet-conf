@@ -8,12 +8,13 @@ class homebox::varnish {
                 group => root,
                 mode => 440,
                 source => "puppet:///modules/homebox/etc-default-varnish",
+		notify => Service['varnish'],
         }
         file { "/etc/varnish/default.vcl":
                 owner => lucos,
                 group => lucos,
                 mode => 644,
-
+		notify => Service['varnish'],
                 source => "puppet:///modules/homebox/default.vcl",
         }
         file { "/usr/sbin/varnishd":
