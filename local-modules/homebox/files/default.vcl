@@ -161,6 +161,8 @@ sub vcl_recv {
                 set req.backend = arkb;
         } elsif (req.http.host == "private.l42.eu") {
                 set req.backend = apache;
+        } elsif (req.http.host == "home.l42.eu") {
+                set req.backend = apache;
         } elsif (req.http.host == "staticmedia.l42.eu") {
                 set req.backend = apache;
         } elsif (req.http.host == "photos.l42.eu") {
@@ -183,6 +185,10 @@ sub vcl_recv {
         if (req.url ~ "/resources") {
                 return(pass);
         }
+	# Pipe files with movie extensions.
+	if (req.url ~ "\.mp4$" || req.url ~ "\.mkv$" || req.url ~ "\.avi$" || req.url ~ "\.divx$" ||  req.url ~ "\.mov$" ||  req.url ~ "\.flv$") {
+		return (pipe);
+	}
 }
 
 

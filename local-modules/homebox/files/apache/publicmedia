@@ -1,5 +1,6 @@
 <VirtualHost *:8010>
 	ServerName staticmedia.l42.eu
+	ServerAlias home.l42.eu
 	DocumentRoot /web/lucos/public/
 	RedirectMatch ^/$ http://l42.eu/
 	<Directory /web/lucos/public/>
