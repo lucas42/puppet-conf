@@ -50,7 +50,10 @@ class django (
 		}, {
 			alias => '/icon',
 			path  => "/web/lucos/${directory}/templates/resources/logo.png",
-		}]
+		}, {
+                        alias => '/bootloader',
+                        path  => '/web/lucos/core/bootloader.js',
+                }]
         }
 
 }
