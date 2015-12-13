@@ -6,7 +6,7 @@ server {
   ssl_certificate      /etc/letsencrypt/live/<%= @domain -%>/fullchain.pem;
   ssl_certificate_key  /etc/letsencrypt/live/<%= @domain -%>/privkey.pem;
   #ssl_trusted_certificate /etc/letsencrypt/live/<%= @domain -%>/fullchain.pem;
-
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;# omit SSLv3 because of POODLE (CVE-2014-3566)
 
   location / {
     # Pass the request on to Varnish.
