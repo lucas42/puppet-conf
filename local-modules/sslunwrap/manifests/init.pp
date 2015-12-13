@@ -21,4 +21,5 @@ class sslunwrap {
 	sslunwrap::site { 'app.tfluke.uk': }
 	sslunwrap::site { 'www.tfluke.uk': }
 	sslunwrap::site { 'contacts.l42.eu': }
+	sslunwrap::site { 'zabbix.l42.eu': }
 }

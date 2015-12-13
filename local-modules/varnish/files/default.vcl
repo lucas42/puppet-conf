@@ -29,6 +29,7 @@ sub vcl_recv {
 	}
 	if (req.http.host == "zabbix.l42.eu") {
 		set req.backend = zabbix;
+		call force_https;
 	} elsif (req.http.host == "puppetdb.l42.eu") {
 		set req.backend = puppetdb;
 	} elseif (req.http.host == "contacts.l42.eu") {
