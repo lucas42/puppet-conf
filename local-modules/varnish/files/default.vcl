@@ -24,17 +24,23 @@ acl tls {
 	"localhost";
 }
 sub vcl_recv {
+	
+	# Prevent clients from spoofing their protocol
 	if (!client.ip ~ tls) {
 		remove req.http.X-Forwarded-Proto;
 	}
+
+	# Redirect all non-https traffic to https
+	if (req.http.X-Forwarded-Proto != "https") {
+		error 799 "https://"+req.http.host+req.url;
+	}
+
 	if (req.http.host == "zabbix.l42.eu") {
 		set req.backend = zabbix;
-		call force_https;
 	} elsif (req.http.host == "puppetdb.l42.eu") {
 		set req.backend = puppetdb;
 	} elseif (req.http.host == "contacts.l42.eu") {
 		set req.backend = contacts;
-		call force_https;
 	} elseif (req.http.host == "tfluke.uk") {
 		set req.backend = tfluke;
 	} elseif (req.http.host == "www.tfluke.uk") {
@@ -44,11 +50,6 @@ sub vcl_recv {
 		set req.backend = tflukeapp;
 	} else {
 		error 499 "Host Not Found";
-	}
-}
-sub force_https {
-	if (req.http.X-Forwarded-Proto != "https") {
-		error 799 "https://"+req.http.host+req.url;
 	}
 }
 
