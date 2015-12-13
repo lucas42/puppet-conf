@@ -16,6 +16,21 @@ class sslunwrap {
                 ensure => absent,
 		notify => Service['nginx'],
 	}
+	exec { '/usr/bin/openssl dhparam -out /etc/ssl/private/dhparams.pem 2048':
+		creates => '/etc/ssl/private/dhparams.pem',
+		require => Package['nginx'],
+		notify  => Service['nginx'],
+		timeout => 0, # Apparently this can take a LONG time
+	}
+	file { '/etc/nginx/nginx.conf':
+		ensure  => present,
+		source  => 'puppet:///modules/sslunwrap/nginx.conf',
+		owner   => 'root',
+		group   => 'root',
+		require => Package['nginx'],
+		notify  => Service['nginx'],
+	}
+
 
 	sslunwrap::site { 'tfluke.uk': }
 	sslunwrap::site { 'app.tfluke.uk': }
