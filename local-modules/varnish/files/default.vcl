@@ -10,7 +10,7 @@ backend contacts {
 	.host = "10.0.0.6";
 	.port = "80";
 }
-backend tfluke {
+backend githubpages {
 	.host = "lucas42.github.io";
 	.port = "80";
 }
@@ -42,12 +42,14 @@ sub vcl_recv {
 	} elseif (req.http.host == "contacts.l42.eu") {
 		set req.backend = contacts;
 	} elseif (req.http.host == "tfluke.uk") {
-		set req.backend = tfluke;
+		set req.backend = githubpages;
 	} elseif (req.http.host == "www.tfluke.uk") {
 		set req.http.host = "tfluke.uk";
-                set req.backend = tfluke;
+                set req.backend = githubpages;
 	} elseif (req.http.host == "app.tfluke.uk") {
 		set req.backend = tflukeapp;
+        } elseif (req.http.host == "fionnblaney.co.uk") {
+                set req.backend = githubpages;
 	} else {
 		error 499 "Host Not Found";
 	}

@@ -38,4 +38,5 @@ class sslunwrap {
 	sslunwrap::site { 'contacts.l42.eu': }
 	sslunwrap::site { 'zabbix.l42.eu': }
 	sslunwrap::site { 'puppetdb.l42.eu': }
+	sslunwrap::site { 'fionnblaney.co.uk': }
 }
