@@ -18,6 +18,10 @@ backend tflukeapp {
 	.host = "tfluke.herokuapp.com";
 	.port = "80";
 }
+backend am {
+	.host = "10.0.0.7";
+	.port = "8008";
+}
 
 # Hosts trusted to do TLS unwrapping
 acl tls {
@@ -50,6 +54,8 @@ sub vcl_recv {
 		set req.backend = tflukeapp;
         } elseif (req.http.host == "fionnblaney.co.uk") {
                 set req.backend = githubpages;
+	} elseif (req.http.host == "am.l42.eu") {
+		set req.backend = am;
 	} else {
 		error 499 "Host Not Found";
 	}
