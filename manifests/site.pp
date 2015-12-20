@@ -42,7 +42,8 @@ node olympiccarrier {
 }
 node daedalus {
 	include standardnode
-	include docker
+	include lucos
+	include systemd
 }
 node default {
 	include standardnode

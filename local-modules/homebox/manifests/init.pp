@@ -3,7 +3,7 @@
 class homebox {
 	class { 'homebox::varnish': }
 	class { 'homebox::apache': } ->
-	class { 'homebox::lucos': } ->
+	class { 'lucos': } ->
 	class { 'homebox::fileserver': } ->
 	class { 'homebox::progs': }
 }

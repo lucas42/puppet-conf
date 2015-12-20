@@ -1,5 +1,5 @@
 # Needs to inherit from login in order to add lucas to the lucos group
-class homebox::lucos inherits login{
+class lucos inherits login{
         user { "lucos":
                 ensure => present,
                 uid => 2001,
