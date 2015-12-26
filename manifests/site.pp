@@ -44,6 +44,7 @@ node daedalus {
 	include standardnode
 	include lucos
 	include systemd
+	include nodejs
 }
 node default {
 	include standardnode
