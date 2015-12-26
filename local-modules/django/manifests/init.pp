@@ -4,7 +4,7 @@ class django (
 	$application,
 ){
 	class { 'apt::backports':
-		pin_priority => 500,
+		pin => 500,
 	} ->
         package { ["python-django", "python-psycopg2"]:
                 ensure => "latest",

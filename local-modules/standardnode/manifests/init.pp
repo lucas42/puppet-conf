@@ -5,4 +5,5 @@ class standardnode {
 	include standardnode::time
 	include standardnode::dnsupdates
 	include standardnode::puppetagentconfig
+	include standardnode::apt
 }
