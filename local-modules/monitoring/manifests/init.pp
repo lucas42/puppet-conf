@@ -13,9 +13,10 @@ class monitoring (
 	}
 	$zabbixservers = query_nodes('Service[\'zabbix-server\']', $key)
 	class { 'zabbix::agent':
-		server           => $zabbixservers[0],
-		manage_resources => true,
-		agent_use_ip     => $agent_use_ip,
-		listenip         => $listenip,
+		server               => $zabbixservers[0],
+		manage_resources     => true,
+		agent_use_ip         => $agent_use_ip,
+		listenip             => $listenip,
+		enableremotecommands => '1',
 	}
 }
