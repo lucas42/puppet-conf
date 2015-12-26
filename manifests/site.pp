@@ -17,7 +17,7 @@ node beliskner {
 	class { 'puppetdb::database::postgresql':
 		listen_addresses => "*"
 	}
-	include zabbix::database::remotepostgresql
+	include zabbix::database
 }
 node thunderbird5 {
 	include standardnode

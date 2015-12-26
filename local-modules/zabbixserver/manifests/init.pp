@@ -7,9 +7,9 @@ class zabbixserver {
 	}
 	include apache::mod::php
 
-        $dbhosts = query_nodes('Class[\'zabbix::database::remotepostgresql\']', 'ipaddress')
+        $dbhosts = query_nodes('Class[\'zabbix::database\']', 'ipaddress')
         class { 'zabbix::server':
-                dbhost           => $dbhosts[0],
+                database_host           => $dbhosts[0],
                 manage_resources => true,
                 zabbix_timezone  => 'Europe/London',
 		alertscriptspath => '/etc/zabbix/alert.d',
