@@ -14,6 +14,13 @@ class standardnode::puppetagentconfig {
 		ensure  => 'file',
 		content => 'START=yes'
 	} ~>
+	file { '/var/lib/puppet':
+		mode => 'a+x',
+	}
+	file { '/var/lib/puppet/state/last_run_report.yaml':
+		mode  => 'g+r',
+		group => 'zabbix',
+	} ~>
 	service { 'puppet':
 		ensure => 'running',
 	}
