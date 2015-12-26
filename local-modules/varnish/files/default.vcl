@@ -52,8 +52,6 @@ sub vcl_recv {
                 set req.backend = githubpages;
 	} elseif (req.http.host == "app.tfluke.uk") {
 		set req.backend = tflukeapp;
-        } elseif (req.http.host == "fionnblaney.co.uk") {
-                set req.backend = githubpages;
 	} elseif (req.http.host == "am.l42.eu") {
 		set req.backend = am;
 	} else {
