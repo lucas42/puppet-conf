@@ -18,8 +18,9 @@ class puppetmaster {
 	class { 'puppetdb::server':
 
 		# Hardcode for now.  TODO: use puppetdb to work it out (how meta!)
-		database_host  => '10.0.0.2',
-		listen_address => '0.0.0.0',
+		database_host      => '10.0.0.2',
+		listen_address     => '0.0.0.0',
+		ssl_listen_address => '0.0.0.0',
 	}
 	package { 'ruby-puppetdb':
 		provider => 'gem',
