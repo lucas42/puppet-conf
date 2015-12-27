@@ -22,6 +22,10 @@ backend am {
 	.host = "10.0.0.7";
 	.port = "8008";
 }
+backend auth {
+	.host = "10.0.0.7";
+	.port = "8006";
+}
 
 # Hosts trusted to do TLS unwrapping
 acl tls {
@@ -54,6 +58,8 @@ sub vcl_recv {
 		set req.backend = tflukeapp;
 	} elseif (req.http.host == "am.l42.eu") {
 		set req.backend = am;
+	} elseif (req.http.host == "auth.l42.eu") {
+		set req.backend = auth;
 	} else {
 		error 499 "Host Not Found";
 	}
