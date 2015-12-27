@@ -31,14 +31,17 @@ class sslunwrap {
 		notify  => Service['nginx'],
 	}
 
-
-	sslunwrap::site { 'tfluke.uk': }
-	sslunwrap::site { 'app.tfluke.uk': }
-	sslunwrap::site { 'www.tfluke.uk': }
-	sslunwrap::site { 'contacts.l42.eu': }
-	sslunwrap::site { 'zabbix.l42.eu': }
-	sslunwrap::site { 'puppetdb.l42.eu': }
-	sslunwrap::site { 'am.l42.eu': }
-	sslunwrap::site { 'auth.l42.eu': }
-	sslunwrap::site { 'l42.eu': }
+	sslunwrap::site {[
+		'tfluke.uk',
+		'app.tfluke.uk',
+		'www.tfluke.uk',
+		'contacts.l42.eu',
+		'zabbix.l42.eu',
+		'puppetdb.l42.eu',
+		'am.l42.eu',
+		'auth.l42.eu',
+		'l42.eu',
+		'notes.l42.eu',
+		'speak.l42.eu',
+	]:}
 }
