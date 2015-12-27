@@ -26,11 +26,34 @@ node thunderbird5 {
 node webstar {
 	include standardnode
 	include varnish
-	include sslunwrap
+	class { 'sslunwrap':
+		domains => [
+			'tfluke.uk',
+			'app.tfluke.uk',
+			'www.tfluke.uk',
+			'contacts.l42.eu',
+			'zabbix.l42.eu',
+			'puppetdb.l42.eu',
+			'am.l42.eu',
+			'auth.l42.eu',
+			'l42.eu',
+			'notes.l42.eu',
+			'speak.l42.eu',
+			'ceol.l42.eu',
+		],
+	}
 }
 node interceptor {
 	include standardnode
 	include homebox
+	class { 'sslunwrap':
+		domains => [
+			'private.l42.eu',
+			'home.l42.eu',
+			'staticmedia.l42.eu',
+			'photos.l42.eu',
+		],
+	}
 }
 node olympiccarrier {
 	include standardnode

@@ -16,6 +16,7 @@ define sslunwrap::site () {
 		# Not sure whether nginx needs bounced when certs change, but do it just in case.
 		notify  => Service['nginx'],
 		cwd     => '/etc/letsencrypt/',
+		timeout => 1500,
 	}
 }
 

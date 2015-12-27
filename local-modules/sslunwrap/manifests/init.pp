@@ -3,7 +3,13 @@
 # Assumes that certs for each domain have been set using letsencrypt
 # and put in letsencrpyt's default directory structure
 #
-class sslunwrap {
+# ## Params
+# domains - mandatory.  An array of domains to do ssl unwrapping for
+# Public DNS for these domains must point to this server
+#
+class sslunwrap (
+	$domains,
+){
 	package { 'nginx':
 		ensure => present,
 	}
@@ -31,17 +37,5 @@ class sslunwrap {
 		notify  => Service['nginx'],
 	}
 
-	sslunwrap::site {[
-		'tfluke.uk',
-		'app.tfluke.uk',
-		'www.tfluke.uk',
-		'contacts.l42.eu',
-		'zabbix.l42.eu',
-		'puppetdb.l42.eu',
-		'am.l42.eu',
-		'auth.l42.eu',
-		'l42.eu',
-		'notes.l42.eu',
-		'speak.l42.eu',
-	]:}
+	sslunwrap::site {$domains:}
 }
