@@ -25,4 +25,8 @@ class puppetmaster {
 	package { 'ruby-puppetdb':
 		provider => 'gem',
 	}
+	tidy { "/var/lib/puppet/reports":
+		age => "1w",
+		recurse => true,
+	}
 }
