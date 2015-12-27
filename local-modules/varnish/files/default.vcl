@@ -54,14 +54,19 @@ sub vcl_recv {
 		remove req.http.X-Forwarded-Proto;
 	}
 
+	# HACK: send music player over http until private.l42.eu has SSL (awaiting letsencrypt rate limit to finish)
+	if (req.http.host == "ceol.l42.eu" && req.url ~ "^/player") {
+		if (req.http.X-Forwarded-Proto == "https") {
+			error 799 "http://"+req.http.host+req.url;
+		}
 	# Redirect all non-https traffic to https
-	if (req.http.X-Forwarded-Proto != "https") {
+	} elseif (req.http.X-Forwarded-Proto != "https") {
 		error 799 "https://"+req.http.host+req.url;
 	}
 
 	if (req.http.host == "zabbix.l42.eu") {
 		set req.backend = zabbix;
-	} elsif (req.http.host == "puppetdb.l42.eu") {
+	} elseif (req.http.host == "puppetdb.l42.eu") {
 		set req.backend = puppetdb;
 	} elseif (req.http.host == "contacts.l42.eu") {
 		set req.backend = contacts;
