@@ -26,6 +26,10 @@ backend auth {
 	.host = "10.0.0.7";
 	.port = "8006";
 }
+backend root {
+	.host = "10.0.0.7";
+	.port = "8003";
+}
 
 # Hosts trusted to do TLS unwrapping
 acl tls {
@@ -60,6 +64,8 @@ sub vcl_recv {
 		set req.backend = am;
 	} elseif (req.http.host == "auth.l42.eu") {
 		set req.backend = auth;
+	} elseif (req.http.host == "l42.eu") {
+		set req.backend = root;
 	} else {
 		error 499 "Host Not Found";
 	}

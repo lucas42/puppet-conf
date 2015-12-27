@@ -40,4 +40,5 @@ class sslunwrap {
 	sslunwrap::site { 'puppetdb.l42.eu': }
 	sslunwrap::site { 'am.l42.eu': }
 	sslunwrap::site { 'auth.l42.eu': }
+	sslunwrap::site { 'l42.eu': }
 }
