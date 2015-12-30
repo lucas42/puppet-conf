@@ -15,8 +15,8 @@ backend githubpages {
 	.port = "80";
 }
 backend tflukeapp {
-	.host = "tfluke.herokuapp.com";
-	.port = "80";
+	.host = "10.0.0.7";
+	.port = "3000";
 }
 backend am {
 	.host = "10.0.0.7";
@@ -55,7 +55,7 @@ sub vcl_recv {
 	}
 
 	# HACK: send music player over http until private.l42.eu has SSL (awaiting letsencrypt rate limit to finish)
-	if (req.http.host == "ceol.l42.eu" && req.url ~ "^/player") {
+	if (req.http.host == "ceol.l42.eu" && (req.url ~ "^/player" || req.url ~ "^/done" || req.url ~ "^/update")) {
 		if (req.http.X-Forwarded-Proto == "https") {
 			error 799 "http://"+req.http.host+req.url;
 		}
