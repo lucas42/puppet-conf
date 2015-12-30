@@ -1,5 +1,5 @@
 class nodejs {
-	package { "nodejs":
+	package { ["nodejs", "npm"]:
 		ensure => installed,
 	}
 }
