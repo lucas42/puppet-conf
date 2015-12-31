@@ -61,6 +61,11 @@ sub vcl_recv {
 		}
 	# Redirect all non-https traffic to https
 	} elseif (req.http.X-Forwarded-Proto != "https") {
+
+		# Send a 410 for manifest files so that the browser deletes the http version of the cache.
+		if (req.url ~ "\.manifest$") {
+			error 410 "Moved to https";
+		}
 		error 799 "https://"+req.http.host+req.url;
 	}
 
