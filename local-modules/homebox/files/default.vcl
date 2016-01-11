@@ -152,7 +152,23 @@ backend progs {
 #       return (ok);
 # }
 
+# Hosts trusted to do TLS unwrapping
+acl tls {
+        "localhost";
+}
 sub vcl_recv {
+        
+        # Prevent clients from spoofing their protocol
+        if (!client.ip ~ tls) {
+                remove req.http.X-Forwarded-Proto;
+        }
+        
+        # Redirect all non-https traffic to https
+        if (req.http.X-Forwarded-Proto != "https") {
+                error 799 "https://"+req.http.host+req.url;
+        }
+
+
         if (req.http.host == "progs.l42.eu") {
                 set req.backend = arkb;
         } elsif (req.http.host == "progs2.l42.eu") {
@@ -193,7 +209,14 @@ sub vcl_recv {
 
 
 
- sub vcl_error {
+
+sub vcl_error {
+     if (obj.status == 799) {
+           set obj.http.Location = obj.response;
+           set obj.status = 302;
+           return (deliver);
+     }
+
      set obj.http.Content-Type = "text/html; charset=utf-8";
      set obj.http.Retry-After = "5";
      synthetic {"
@@ -215,4 +238,4 @@ sub vcl_recv {
  </html>
  "}; 
      return (deliver);
- }
+}
