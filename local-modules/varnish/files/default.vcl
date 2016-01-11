@@ -54,13 +54,8 @@ sub vcl_recv {
 		remove req.http.X-Forwarded-Proto;
 	}
 
-	# HACK: send music player over http until private.l42.eu has SSL (awaiting letsencrypt rate limit to finish)
-	if (req.http.host == "ceol.l42.eu" && (req.url ~ "^/player" || req.url ~ "^/done" || req.url ~ "^/update")) {
-		if (req.http.X-Forwarded-Proto == "https") {
-			error 799 "http://"+req.http.host+req.url;
-		}
 	# Redirect all non-https traffic to https
-	} elseif (req.http.X-Forwarded-Proto != "https") {
+	if (req.http.X-Forwarded-Proto != "https") {
 
 		# Send a 410 for manifest files so that the browser deletes the http version of the cache.
 		if (req.url ~ "\.manifest$") {
