@@ -163,12 +163,6 @@ sub vcl_recv {
                 remove req.http.X-Forwarded-Proto;
         }
         
-        # Redirect all non-https traffic to https
-        if (req.http.X-Forwarded-Proto != "https") {
-                error 799 "https://"+req.http.host+req.url;
-        }
-
-
         if (req.http.host == "progs.l42.eu") {
                 set req.backend = arkb;
         } elsif (req.http.host == "progs2.l42.eu") {
@@ -205,6 +199,11 @@ sub vcl_recv {
 	if (req.url ~ "\.mp4$" || req.url ~ "\.mkv$" || req.url ~ "\.avi$" || req.url ~ "\.divx$" ||  req.url ~ "\.mov$" ||  req.url ~ "\.flv$") {
 		return (pipe);
 	}
+
+        # Redirect all non-https traffic to https
+        if (req.http.X-Forwarded-Proto != "https") {
+                error 799 "https://"+req.http.host+req.url;
+        }
 }
 
 
