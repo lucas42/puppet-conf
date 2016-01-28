@@ -29,4 +29,7 @@ class puppetmaster {
 		age => "1w",
 		recurse => true,
 	}
+	package { 'puppet-lint':
+		provider => 'gem',
+	}
 }
