@@ -36,6 +36,22 @@ class sslunwrap (
 		require => Package['nginx'],
 		notify  => Service['nginx'],
 	}
+	file { '/etc/nginx/checkexpiry.sh':
+                ensure  => present,
+                source  => 'puppet:///modules/sslunwrap/checkexpiry.sh',
+                owner   => 'root',
+                group   => 'root',
+                require => Package['nginx'],
+		mode    => 'a+x',
+	}
+
+	file {'/etc/zabbix/zabbix_agentd.d/certexpiry.conf':
+		content => 'UserParameter=certexpiry[*],/etc/nginx/checkexpiry.sh $1',
+		owner   => 'zabbix',
+		group   => 'zabbix',
+		require => Package['zabbix-agent'],
+		notify  => Service['zabbix-agent'],
+	}
 
 	sslunwrap::site {$domains:}
 }
