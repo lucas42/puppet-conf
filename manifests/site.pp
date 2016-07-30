@@ -40,6 +40,7 @@ node webstar {
 			'notes.l42.eu',
 			'speak.l42.eu',
 			'ceol.l42.eu',
+			'seinn.l42.eu',
 		],
 	}
 }
