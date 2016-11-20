@@ -78,7 +78,7 @@ sub vcl_recv {
 		set req.backend = githubpages;
 	} elseif (req.http.host == "www.tfluke.uk") {
 		set req.http.host = "tfluke.uk";
-                set req.backend = githubpages;
+		set req.backend = githubpages;
 	} elseif (req.http.host == "app.tfluke.uk") {
 		set req.backend = tflukeapp;
 	} elseif (req.http.host == "am.l42.eu") {
@@ -95,6 +95,11 @@ sub vcl_recv {
 		set req.backend = ceol;
 	} elseif (req.http.host == "seinn.l42.eu") {
 		set req.backend = seinn;
+	} elseif (req.http.host == "phys.l42.eu") {
+		if (req.url == "/") {
+			error 799 "https://l42.eu/";
+		}
+		set req.backend = githubpages;
 	} else {
 		error 499 "Host Not Found";
 	}

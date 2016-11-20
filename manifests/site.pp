@@ -41,6 +41,7 @@ node webstar {
 			'speak.l42.eu',
 			'ceol.l42.eu',
 			'seinn.l42.eu',
+			'phys.l42.eu',
 		],
 	}
 }
