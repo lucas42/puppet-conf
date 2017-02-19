@@ -8,12 +8,16 @@ class zabbixserver {
 	include apache::mod::php
 
         $dbhosts = query_nodes('Class[\'zabbix::database\']', 'ipaddress')
+	class { 'postgresql::client': }
         class { 'zabbix::server':
-                database_host           => $dbhosts[0],
-                manage_resources => true,
-                zabbix_timezone  => 'Europe/London',
-		alertscriptspath => '/etc/zabbix/alert.d',
+		database_host     => $dbhosts[0],
+		alertscriptspath  => '/etc/zabbix/alert.d',
         } ->
+	class { 'zabbix::web':
+		database_host     => $dbhosts[0],
+		manage_resources => true,
+		zabbix_timezone  => 'Europe/London',
+	} ->
 	class { 'zabbixserver::mail': }
 
         # HACK: On wheezy, puppet looks for gems in a different place to where
