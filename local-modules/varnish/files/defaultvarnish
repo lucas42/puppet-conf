@@ -31,4 +31,6 @@ DAEMON_OPTS="-a :80 \
              -T localhost:6082 \
              -f /etc/varnish/default.vcl \
              -S /etc/varnish/secret \
-             -s malloc,256m"
+             -s malloc,256m\
+             -p cli_timeout=300\
+             -p auto_restart=on"
