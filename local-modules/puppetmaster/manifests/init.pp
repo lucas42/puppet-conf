@@ -11,7 +11,6 @@ class puppetmaster {
 		ensure => "directory",
 		owner => lucas,
 		require => [User["lucas"], Package["puppetmaster"]],
-		recurse => true,
 	}
 	class { 'puppetdb::master::config':
 	}
@@ -25,9 +24,11 @@ class puppetmaster {
 	package { 'ruby-puppetdb':
 		provider => 'gem',
 	}
-	tidy { "/var/lib/puppet/reports":
-		age => "1w",
-		recurse => true,
+	cron { 'tidy-reports':
+		command => 'find /var/lib/puppet/reports/ -type f -ctime +7 | xargs -P 4 -n 20 rm -f',
+		user    => 'root',
+		hour    => 3,
+		minute  => 13,
 	}
 	package { 'puppet-lint':
 		provider => 'gem',
