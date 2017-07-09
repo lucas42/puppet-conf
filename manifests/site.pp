@@ -42,6 +42,7 @@ node webstar {
 			'ceol.l42.eu',
 			'seinn.l42.eu',
 			'phys.l42.eu',
+			'media-api.l42.eu',
 		],
 	}
 }
@@ -71,6 +72,7 @@ node daedalus {
 	include systemd
 	include nodejs
 	include java
+	include golang
 }
 node default {
 	include standardnode

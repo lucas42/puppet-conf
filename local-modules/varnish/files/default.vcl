@@ -46,6 +46,10 @@ backend seinn {
 	.host = "10.0.0.7";
 	.port = "3001";
 }
+backend mediaapi {
+	.host = "10.0.0.7";
+	.port = "3002";
+}
 
 # Hosts trusted to do TLS unwrapping
 acl tls {
@@ -95,6 +99,8 @@ sub vcl_recv {
 		set req.backend = ceol;
 	} elseif (req.http.host == "seinn.l42.eu") {
 		set req.backend = seinn;
+	} elseif (req.http.host == "media-api.l42.eu") {
+		set req.backend = mediaapi;
 	} elseif (req.http.host == "phys.l42.eu") {
 		if (req.url == "/") {
 			error 799 "https://l42.eu/";
