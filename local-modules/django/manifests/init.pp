@@ -6,9 +6,17 @@ class django (
 	class { 'apt::backports':
 		pin => 500,
 	} ->
-        package { ["python-django", "python-psycopg2"]:
+        package { ["python-pip", "libpq-dev", "python-dev"]:
                 ensure => "latest",
-        }
+        } ->
+	package { "django":
+		ensure   => "1.11.3",
+		provider => "pip",
+	} ->
+	package { "psycopg2":
+		ensure   => "2.7.3",
+		provider => "pip",
+	}
 	include lucos
 	class { 'apache':  }
 	class { 'apache::mod::wsgi':
