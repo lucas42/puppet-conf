@@ -29,17 +29,11 @@ class django (
 		docroot_group => 'lucas',
                 wsgi_script_aliases         => { '/' => "/web/lucos/${directory}/${application}/wsgi.py" },
 		aliases => [{
-			alias => '/media/admin/',
-			path  => '/usr/share/pyshared/django/contrib/admin/static/admin/',
+			alias => '/resources/admin/',
+			path  => '/usr/local/lib/python2.7/dist-packages/django/contrib/admin/static/admin/',
 		}, {
-			alias => '/favicon.ico',
-			path  => "/web/lucos/${directory}/templates/resources/logo.png",
-		}, {
-			alias => '/icon',
-			path  => "/web/lucos/${directory}/templates/resources/logo.png",
-		}, {
-                        alias => '/bootloader',
-                        path  => '/web/lucos/core/bootloader.js',
+                        alias => '/resources',
+                        path  => "/web/lucos/${directory}/templates/resources",
                 }]
         }
 
