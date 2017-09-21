@@ -50,7 +50,7 @@ class homebox::fileserver (
                 require => [File["/medlib/public/"]],
         }
         mount { '/medlib':
-                device => "192.168.1.4:/medlib",
+                device => "192.168.1.64:/medlib",
                 fstype => "nfs",
                 ensure => "mounted",
                 atboot => true,
