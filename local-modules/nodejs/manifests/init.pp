@@ -1,10 +1,6 @@
 class nodejs {
-	package { ["nodejs", "npm"]:
+	# TODO: ensure version 8 is installed, (not version 4 which is the default in Debian Stretch)
+	package { ["nodejs"]:
 		ensure => installed,
-	}
-
-	# Debian calls node a different name than anything expecting to run it.
-	file { '/usr/bin/node':
-		ensure => '/usr/bin/nodejs'
 	}
 }
