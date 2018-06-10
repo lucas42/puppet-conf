@@ -11,7 +11,9 @@ backend contacts {
 	.port = "80";
 }
 backend githubpages {
-	.host = "lucas42.github.io";
+	//.host = "lucas42.github.io";
+	// HACK: they've put fastly in front of github pages, so now there's multiple IP addresses
+	.host = "185.199.108.153";
 	.port = "80";
 }
 backend tflukeapp {
